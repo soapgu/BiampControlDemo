@@ -37,6 +37,8 @@ welcome = shell.recv(128).decode(encoding='ascii')
 print(welcome)
 sn_command = 'DEVICE get serialNumber\n'
 get_mute_command = 'Level1 get mute 1\n'
+sub_mute_command = 'Level1 subscribe mute 1 level_mute_sub 500 \n'
+set_mute_command = 'Level1 set mute 1 false\n'
 
 print("begin to fetch serialNumber")
 response = excute_command( sn_command )
@@ -44,6 +46,12 @@ print(response)
 time.sleep(1)
 print("begin to fetch mute status")
 response = excute_command( get_mute_command )
+print(response)
+
+response = excute_command(sub_mute_command)
+print(response)
+
+response = excute_command(set_mute_command)
 print(response)
 
 print("close ssh")
